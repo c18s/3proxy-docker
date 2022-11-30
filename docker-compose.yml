@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  proxy:
+    image: 3proxy:latest
+    restart: always
+    container_name: 3proxy
+    hostname: proxy
+    environment:
+      PROXY_LOGIN: user1
+      PROXY_PASSWORD: pass1
+      PRIMARY_RESOLVER: 1.1.1.1
+      SECONDARY_RESOLVER: 8.8.8.8
+      MAX_CONNECTIONS: 4096
+      PROXY_PORT: 3128
+      SOCKS_PORT: 1080
+    ports:
+      - 3128:3128/tcp
+      - 1080:1080/tcp

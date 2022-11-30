@@ -19,14 +19,14 @@
 TCP ports:
 
 | Port number | Description                                             |
-|-------------|---------------------------------------------------------|
+| ----------- | ------------------------------------------------------- |
 | `3128`      | [HTTP proxy](https://3proxy.org/doc/man8/proxy.8.html)  |
 | `1080`      | [SOCKS proxy](https://3proxy.org/doc/man8/socks.8.html) |
 
 ## Supported tags
 
 | Registry                               | Image                        |
-|----------------------------------------|------------------------------|
+| -------------------------------------- | ---------------------------- |
 | [GitHub Container Registry][link_ghcr] | `ghcr.io/tarampampam/3proxy` |
 | [Docker Hub][link_docker_hub]          | `tarampampam/3proxy`         |
 
@@ -35,12 +35,12 @@ All supported image tags [can be found here][link_docker_tags].
 ## Supported environment variables
 
 | Variable name        | Description                                               | Example                |
-|----------------------|-----------------------------------------------------------|------------------------|
+| -------------------- | --------------------------------------------------------- | ---------------------- |
 | `PROXY_LOGIN`        | Authorization login (empty by default)                    | `username`             |
 | `PROXY_PASSWORD`     | Authorization password (empty by default)                 | `password`             |
 | `PRIMARY_RESOLVER`   | Primary nameserver (dns resolver; `1.0.0.1` by default)   | `8.8.8.8:5353/tcp`     |
 | `SECONDARY_RESOLVER` | Secondary nameserver (dns resolver; `8.8.4.4` by default) | `2001:4860:4860::8844` |
-| `MAX_CONNECTIONS`    | Maximal connections count (`1024` by default)             | `2056`                 |
+| `MAX_CONNECTIONS`    | Maximal connections count (`4096` by default)             | `2056`                 |
 | `PROXY_PORT`         | HTTP proxy port number (`3128` by default)                | `8080`                 |
 | `SOCKS_PORT`         | SOCKS proxy port number (`1080` by default)               | `8888`                 |
 
@@ -93,24 +93,24 @@ If you find any errors, please, [make an issue][link_create_issue] in current re
 
 WTFPL. Use anywhere for your pleasure.
 
-[badge_build_status]:https://img.shields.io/github/workflow/status/tarampampam/3proxy-docker/tests/master?logo=github&label=build
-[badge_release_status]:https://img.shields.io/github/workflow/status/tarampampam/3proxy-docker/release?logo=github&label=release
-[badge_release_date]:https://img.shields.io/github/release-date/tarampampam/3proxy-docker.svg?style=flat-square&maxAge=180
-[badge_commits_since_release]:https://img.shields.io/github/commits-since/tarampampam/3proxy-docker/latest.svg?style=flat-square&maxAge=180
-[badge_issues]:https://img.shields.io/github/issues/tarampampam/3proxy-docker.svg?style=flat-square&maxAge=180
-[badge_pulls]:https://img.shields.io/github/issues-pr/tarampampam/3proxy-docker.svg?style=flat-square&maxAge=180
-[badge_license]:https://img.shields.io/github/license/tarampampam/3proxy-docker.svg?longCache=true
-[badge_size_latest]:https://img.shields.io/docker/image-size/tarampampam/3proxy/latest?maxAge=30
-[badge_docker_pulls]:https://img.shields.io/docker/pulls/tarampampam/3proxy.svg
-[link_releases]:https://github.com/tarampampam/3proxy-docker/releases
-[link_commits]:https://github.com/tarampampam/3proxy-docker/commits
-[link_changes_log]:https://github.com/tarampampam/3proxy-docker/blob/master/CHANGELOG.md
-[link_issues]:https://github.com/tarampampam/3proxy-docker/issues
-[link_pulls]:https://github.com/tarampampam/3proxy-docker/pulls
-[link_build_status]:https://github.com/tarampampam/3proxy-docker/actions
-[link_create_issue]:https://github.com/tarampampam/3proxy-docker/issues/new
-[link_license]:https://github.com/tarampampam/3proxy-docker/blob/master/LICENSE
-[link_docker_tags]:https://hub.docker.com/r/tarampampam/3proxy/tags
-[link_docker_hub]:https://hub.docker.com/r/tarampampam/3proxy/
-[link_ghcr]:https://github.com/tarampampam/3proxy-docker/pkgs/container/3proxy
-[link_3proxy]:https://github.com/z3APA3A/3proxy
+[badge_build_status]: https://img.shields.io/github/workflow/status/tarampampam/3proxy-docker/tests/master?logo=github&label=build
+[badge_release_status]: https://img.shields.io/github/workflow/status/tarampampam/3proxy-docker/release?logo=github&label=release
+[badge_release_date]: https://img.shields.io/github/release-date/tarampampam/3proxy-docker.svg?style=flat-square&maxAge=180
+[badge_commits_since_release]: https://img.shields.io/github/commits-since/tarampampam/3proxy-docker/latest.svg?style=flat-square&maxAge=180
+[badge_issues]: https://img.shields.io/github/issues/tarampampam/3proxy-docker.svg?style=flat-square&maxAge=180
+[badge_pulls]: https://img.shields.io/github/issues-pr/tarampampam/3proxy-docker.svg?style=flat-square&maxAge=180
+[badge_license]: https://img.shields.io/github/license/tarampampam/3proxy-docker.svg?longCache=true
+[badge_size_latest]: https://img.shields.io/docker/image-size/tarampampam/3proxy/latest?maxAge=30
+[badge_docker_pulls]: https://img.shields.io/docker/pulls/tarampampam/3proxy.svg
+[link_releases]: https://github.com/tarampampam/3proxy-docker/releases
+[link_commits]: https://github.com/tarampampam/3proxy-docker/commits
+[link_changes_log]: https://github.com/tarampampam/3proxy-docker/blob/master/CHANGELOG.md
+[link_issues]: https://github.com/tarampampam/3proxy-docker/issues
+[link_pulls]: https://github.com/tarampampam/3proxy-docker/pulls
+[link_build_status]: https://github.com/tarampampam/3proxy-docker/actions
+[link_create_issue]: https://github.com/tarampampam/3proxy-docker/issues/new
+[link_license]: https://github.com/tarampampam/3proxy-docker/blob/master/LICENSE
+[link_docker_tags]: https://hub.docker.com/r/tarampampam/3proxy/tags
+[link_docker_hub]: https://hub.docker.com/r/tarampampam/3proxy/
+[link_ghcr]: https://github.com/tarampampam/3proxy-docker/pkgs/container/3proxy
+[link_3proxy]: https://github.com/z3APA3A/3proxy

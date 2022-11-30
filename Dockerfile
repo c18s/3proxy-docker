@@ -15,9 +15,9 @@ RUN set -x \
     && echo '#define ANONYMOUS 1' >> ./src/3proxy.h \
     # proxy.c source: <https://github.com/z3APA3A/3proxy/blob/0.9.3/src/proxy.c>
     && sed -i 's~\(<\/head>\)~<style>html,body{background-color:#222526;color:#fff;font-family:sans-serif;\
-text-align:center;display:flex;flex-direction:column;justify-content:center}h1,h2{margin-bottom:0;font-size:2.5em}\
-h2::before{content:'"'"'Proxy error'"'"';display:block;font-size:0.4em;color:#bbb;font-weight:100}\
-h3,p{color:#bbb}</style>\1~' ./src/proxy.c \
+    text-align:center;display:flex;flex-direction:column;justify-content:center}h1,h2{margin-bottom:0;font-size:2.5em}\
+    h2::before{content:'"'"'Proxy error'"'"';display:block;font-size:0.4em;color:#bbb;font-weight:100}\
+    h3,p{color:#bbb}</style>\1~' ./src/proxy.c \
     && cat ./src/proxy.c | grep '</head>'
 
 # And compile
@@ -31,7 +31,10 @@ RUN set -x \
     && strip ./bin/TrafficPlugin.ld.so \
     && strip ./bin/PCREPlugin.ld.so \
     && strip ./bin/TransparentPlugin.ld.so \
-    && strip ./bin/SSLPlugin.ld.so
+    && strip ./bin/SSLPlugin.ld.so \
+    && mkdir /usr/local/lib/3proxy \
+    && cp "/lib/`gcc -dumpmachine`"/libdl.so.* /usr/local/lib/3proxy/
+
 
 # Prepare filesystem for 3proxy running
 FROM busybox:stable-glibc as buffer
@@ -47,7 +50,7 @@ RUN set -x \
     && wget -O ./bin/dumb-init "https://github.com/Yelp/dumb-init/releases/download/v1.2.5/dumb-init_1.2.5_x86_64" \
     && chmod +x ./bin/dumb-init
 
-COPY --from=builder /lib/x86_64-linux-gnu/libdl.so.* ./lib/
+COPY --from=builder /usr/local/lib/3proxy/libdl.so.* ./lib/
 COPY --from=builder /tmp/3proxy/bin/3proxy ./bin/3proxy
 COPY --from=builder /tmp/3proxy/bin/*.ld.so ./usr/local/3proxy/libexec/
 COPY --from=ghcr.io/tarampampam/mustpl:0.1.0 /bin/mustpl ./bin/mustpl
@@ -69,6 +72,7 @@ LABEL \
 
 # Import from builder
 COPY --from=buffer /tmp/rootfs /
+COPY --from=builder /usr/share/zoneinfo /usr/share/zoneinfo
 
 # Use an unprivileged user
 USER 3proxy:3proxy
@@ -79,6 +83,6 @@ ENTRYPOINT [ \
     "-o", "/etc/3proxy/3proxy.cfg", \
     "/etc/3proxy/3proxy.cfg.mustach", \
     "--", "/bin/dumb-init" \
-]
+    ]
 
 CMD ["/bin/3proxy", "/etc/3proxy/3proxy.cfg"]

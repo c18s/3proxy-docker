@@ -4,6 +4,32 @@ All notable changes to this package will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
 
+## v1.8.2
+
+### Removed
+
+- `ppc64le` architecture support
+
+## v1.8.1
+
+### Added
+
+- Multi-arch image support (plus `arm64` and `ppc64le`) [#31]
+
+### Fixed
+
+- Error page colors now depend on the theme, and the text is centered [#31]
+
+[#31]:https://github.com/tarampampam/3proxy-docker/pull/31
+
+## v1.8.0
+
+### Added
+
+- `EXTRA_ACCOUNTS` environment variable is supported now [#28]
+
+[#28]:https://github.com/tarampampam/3proxy-docker/issues/28
+
 ## v1.7.0
 
 ### Added

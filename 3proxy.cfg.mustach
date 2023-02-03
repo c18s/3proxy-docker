@@ -22,9 +22,9 @@ logformat "L%d-%m-%Y %H:%M:%S %z %N.%p %E %U %C:%c %R:%r %O %I %h %T"
 maxconn {{ max_connections }}
 
 {{^auth.login=}}{{^auth.password=}}
-users {{ auth.login }}:CL:{{ auth.password }}
+users {{ auth.login }}:CL:{{ auth.password }}{{#auth.extra_accounts.*}} {{ * }}:CL:{{ . }}{{/auth.extra_accounts.*}}
 auth strong
-allow {{ auth.login }}
+allow {{ auth.login }}{{#auth.extra_accounts.*}},{{ * }}{{/auth.extra_accounts.*}}
 {{/auth.password=}}{{/auth.login=}}
 
 proxy -a -p{{ ports.proxy }}

@@ -32,17 +32,29 @@ TCP ports:
 
 All supported image tags [can be found here][link_docker_tags].
 
+Since v1.8.2 architecture `arm64` (and `amd64` of course) is supported:
+
+```shell
+$ docker run --rm mplatform/mquery ghcr.io/tarampampam/3proxy:1.8.2
+Image: ghcr.io/tarampampam/3proxy:1.8.2
+ * Manifest List: Yes (Image type: application/vnd.docker.distribution.manifest.list.v2+json)
+ * Supported platforms:
+   - linux/amd64
+   - linux/arm64
+```
+
 ## Supported environment variables
 
-| Variable name        | Description                                               | Example                |
-| -------------------- | --------------------------------------------------------- | ---------------------- |
-| `PROXY_LOGIN`        | Authorization login (empty by default)                    | `username`             |
-| `PROXY_PASSWORD`     | Authorization password (empty by default)                 | `password`             |
-| `PRIMARY_RESOLVER`   | Primary nameserver (dns resolver; `1.0.0.1` by default)   | `8.8.8.8:5353/tcp`     |
-| `SECONDARY_RESOLVER` | Secondary nameserver (dns resolver; `8.8.4.4` by default) | `2001:4860:4860::8844` |
-| `MAX_CONNECTIONS`    | Maximal connections count (`4096` by default)             | `2056`                 |
-| `PROXY_PORT`         | HTTP proxy port number (`3128` by default)                | `8080`                 |
-| `SOCKS_PORT`         | SOCKS proxy port number (`1080` by default)               | `8888`                 |
+| Variable name        | Description                                               | Example                           |
+| -------------------- | --------------------------------------------------------- | --------------------------------- |
+| `PROXY_LOGIN`        | Authorization login (empty by default)                    | `username`                        |
+| `PROXY_PASSWORD`     | Authorization password (empty by default)                 | `password`                        |
+| `EXTRA_ACCOUNTS`     | Additional proxy users                                    | `{"evil":"live", "guest":"pass"}` |
+| `PRIMARY_RESOLVER`   | Primary nameserver (dns resolver; `1.0.0.1` by default)   | `8.8.8.8:5353/tcp`                |
+| `SECONDARY_RESOLVER` | Secondary nameserver (dns resolver; `8.8.4.4` by default) | `2001:4860:4860::8844`            |
+| `MAX_CONNECTIONS`    | Maximal connections count (`1024` by default)             | `2056`                            |
+| `PROXY_PORT`         | HTTP proxy port number (`3128` by default)                | `8080`                            |
+| `SOCKS_PORT`         | SOCKS proxy port number (`1080` by default)               | `8888`                            |
 
 ## How can I use this?
 
@@ -52,7 +64,7 @@ For example:
 $ docker run --rm -d \
     -p "3128:3128/tcp" \
     -p "1080:1080/tcp" \
-    tarampampam/3proxy:latest
+    ghcr.io/tarampampam/3proxy:latest
 ```
 
 Or with auth & resolver settings:
@@ -64,7 +76,7 @@ $ docker run --rm -d \
     -e "PROXY_LOGIN=evil" \
     -e "PROXY_PASSWORD=live" \
     -e "PRIMARY_RESOLVER=2001:4860:4860::8888" \
-    tarampampam/3proxy:latest
+    ghcr.io/tarampampam/3proxy:latest
 ```
 
 ## Releasing
@@ -93,8 +105,8 @@ If you find any errors, please, [make an issue][link_create_issue] in current re
 
 WTFPL. Use anywhere for your pleasure.
 
-[badge_build_status]: https://img.shields.io/github/workflow/status/tarampampam/3proxy-docker/tests/master?logo=github&label=build
-[badge_release_status]: https://img.shields.io/github/workflow/status/tarampampam/3proxy-docker/release?logo=github&label=release
+[badge_build_status]: https://img.shields.io/github/actions/workflow/status/tarampampam/3proxy-docker/tests.yml?branch=master&logo=github&label=build
+[badge_release_status]: https://img.shields.io/github/actions/workflow/status/tarampampam/3proxy-docker/release.yml?logo=github&label=release
 [badge_release_date]: https://img.shields.io/github/release-date/tarampampam/3proxy-docker.svg?style=flat-square&maxAge=180
 [badge_commits_since_release]: https://img.shields.io/github/commits-since/tarampampam/3proxy-docker/latest.svg?style=flat-square&maxAge=180
 [badge_issues]: https://img.shields.io/github/issues/tarampampam/3proxy-docker.svg?style=flat-square&maxAge=180
